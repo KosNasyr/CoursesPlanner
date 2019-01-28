@@ -1,0 +1,67 @@
+      <div class="jumbotron content shadow-lg p-3 mb-5 bg-white rounded">
+        <h1>Все курсы</h1>
+        <div class="table-container">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Название</th>
+                  <th scope="col">Дата начала</th>
+                  <th scope="col">Дата окончания</th>
+                  <th scope="col">Длительность</th>
+                  <th scope="col">Количество студентов</th>
+                </tr>
+              </thead>
+              <tbody>
+                {#.}
+                <tr class="course" data-id="{.id}">
+                  <th scope="row">{.id}</th>
+                  <td>{.courseTitle}</td>
+                  <td>{.beginning}</td>
+                  <td>{.ending}</td>
+                  <td>{.daysCount}</td>
+                  <td>{@size key=students /}</td>
+                </tr>
+                {/.}
+              </tbody>
+            </table>
+        </div>
+ 
+<button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#courseAddModal">Добавить курс</button>
+          
+<!-- Modal -->
+<div class="modal fade" id="courseAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Добавить курс</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="courseTitle">Название курса</label>
+            <input type="text" name="courseTitle" placeholder="Введите название курса" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="beginning">Начало курса</label>
+            <input type="date" name="beginning" placeholder="Введите пароль" class="form-control">
+          </div>
+           <div class="form-group">
+            <label for="ending">Конец курса</label>
+            <input type="date" name="ending" placeholder="Введите пароль" class="form-control">
+          </div>
+          <div class="alert alert-danger collapse" data-toggle="collapse" role="alert">
+            <ul>
+                <li>Все поля формы обязательны</li>
+                <li>Дата начала не может меньше даты конца</li>
+            </ul>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="addCourseBtn">Сохранить</button>
+      </div>
+    </div>
+  </div>
+</div>

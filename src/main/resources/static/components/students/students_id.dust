@@ -1,0 +1,63 @@
+      <div class="jumbotron content shadow-lg p-3 mb-5 bg-white rounded">
+        <h1>Профиль №<span name="student_id">{data.id}</span></h1>
+          <div class="form-group">
+            <label for="username">ФИО</label>
+            <input type="text" name="username" value="{data.fullName}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">Электронная почта</label>
+            <input type="email" name="email" value="{data.email}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="number">Телефон</label>
+            <input type="text" name="number" value="{data.telNumber}"class="form-control">
+          </div>
+          <button class="btn btn-success" id="saveChangesStudentBtn">Сохранить</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#scheduleModal">Записать на курс</button>
+          <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Удалить студента</button>
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Удалить студента?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Вы уверены, что хотите удалить этого студента?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteStudentBtn">Удалить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Записать студента на курс</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                <label for="coursesDropdown">Выберите курс</label>
+                  <select class="form-control form-control-sm" id="coursesDropdown">
+                    {#courses}
+                    <option value="{.id}">{.courseTitle}</option>
+                    {/courses}
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="scheduleStudentBtn">Записать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,93 @@
+      <div class="jumbotron content shadow-lg p-3 mb-5 bg-white rounded">
+        <h1>{data.courseTitle}</h1>
+        <div class="table-container">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">ФИО</th>
+                  {#dateArray}
+                  <th scope="col">{.}</th>
+                  {/dateArray}
+                  <th scope="col">Удалить</th>
+                </tr>
+                </thead>
+          <tbody>
+            {#data.progresses}
+            <tr>
+              <th scope="row" class="course_student">{.studentId}</th>
+              <td>{#students}{@eq key=.id value=studentId}{.fullName}{/eq}{/students}</td>
+            {#marks}
+              <td>
+                <div class="form-group">
+                  <select class="form-control form-control-sm markSelect" data-id="{studentId}">
+                    <option value="0" disabled {@eq key=. value=0 type="number"}selected{/eq}></option>
+                    <option value="1" {@eq key=. value=1 type="number"}selected{/eq}>Н</option>
+                    <option value="2" {@eq key=. value=2 type="number"}selected{/eq}>2</option>
+                    <option value="3" {@eq key=. value=3 type="number"}selected{/eq}>3</option>
+                    <option value="4" {@eq key=. value=4 type="number"}selected{/eq}>4</option>
+                    <option value="5" {@eq key=. value=5 type="number"}selected{/eq}>5</option>
+                  </select>
+                </div>
+              </td>
+            {/marks}
+                <td>
+                    <button type="button" data-id="{studentId}" class="close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </td>
+            </tr>
+            {/data.progresses}
+          </tbody>
+        </table>
+        </div>
+        <button class="btn btn-success btn-lg" id="saveMarksBtn">Сохранить оценки</button>
+        <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addStudentModal">Добавить студента</button>
+        <button class="btn btn-danger btn-lg" type="button" data-toggle="modal" data-target="#deleteCourseModal">Удалить курс</button>
+
+          
+        <div class="modal fade" id="deleteCourseModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Удалить курс?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Вы уверены, что хотите удалить весь курс?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteCourseBtn">Удалить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Добавить студента</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                <label for="studentsDropdown">Выберите студента</label>
+                  <select class="form-control form-control-sm" id="studentsDropdown">
+                    {#students}
+                    <option value="{id}">{.fullName}</option>
+                    {/students}
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="addStudentBtn">Добавить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+

@@ -1,0 +1,66 @@
+      <div class="jumbotron content shadow-lg p-3 mb-5 bg-white rounded">
+        <h1>Все студенты</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">ФИО</th>
+              <th scope="col">Курсы</th>
+            </tr>
+          </thead>
+          <tbody>
+            {#.}
+                <tr class="student" onclick="window.location.href='#students/{.id}'">
+                  <th scope="row">{.id}</th>
+                  <td>{.fullName}</td>
+                  <td>
+                    <ul class="list-group">
+                    {#courses}
+                      <li class="list-group-item">{.courseTitle}</li>
+                    {/courses}
+                    </ul>
+                  </td>
+              </tr>
+            {/.}
+          </tbody>
+        </table>
+
+    <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#newStudentModal">Зарегистрировать студента</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Новый студент</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                <label for="username">ФИО</label>
+                <input type="text" name="username" placeholder="Введите полное имя" class="form-control">
+                </div>
+            <div class="form-group">
+                <label for="email">Электронная почта</label>
+                <input type="email" name="email" placeholder="Введите электронную почту" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="number">Телефон</label>
+                <input type="text" name="number" placeholder="Введите номер телефона" class="form-control">
+            </div>
+            <div class="alert alert-danger collapse" data-toggle="collapse" role="alert">
+                <ul>
+                    <li>Все поля формы обязательны</li>
+                    <li>Дата начала не может меньше даты конца</li>
+                </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="newStudentBtn">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
